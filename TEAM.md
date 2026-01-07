@@ -22,7 +22,7 @@
   - Demo video creation
   - Visual assets and diagrams
 
-### 3. Lethabo.S - Business Lead
+### 3. All - Business Lead
 - **Role**: Business Lead
 - **Expertise**: African Fintech, Market Research, Business Analysis
 - **Responsibilities**:
@@ -31,7 +31,7 @@
   - Pitch deck and presentation
   - Market fit validation
 
-### 4. Remotabetse.S - QA/Docs Lead
+### 4. Lethabo.S - QA/Docs Lead
 - **Role**: QA/Docs Lead
 - **Expertise**: Testing, Documentation, Project Management
 - **Responsibilities**:
