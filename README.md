@@ -260,8 +260,8 @@ Cancelled  InDispute → Refunded / Completed
 | ------------- | ------------- | ------------------------- |
 | Sontaga.M     | Backend Lead  | Rust, Systems Programming |
 | Nkateko.M     | Frontend / UX | UI & Web                  |
-| Lethabo.S     | Business      | African Fintech           |
-| Remotabetse.S | QA / Docs     | Testing & Documentation   |
+| All           | Business      | African Fintech           |
+| Lethabo.S     | QA / Docs     | Testing & Documentation   |
 
 📄 See `TEAM.md` for more details.
 
