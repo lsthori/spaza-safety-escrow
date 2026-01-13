@@ -254,16 +254,13 @@ Cancelled  InDispute → Refunded / Completed
 
 ## 👥 Team
 
-**Team Name:** GAC ()
+**Team Name:** GAC
 
-| Name          | Role          | Expertise                 |
-| ------------- | ------------- | ------------------------- |
-| Sontaga.M     | Backend Lead  | Rust, Systems Programming |
-| Nkateko.M     | Frontend / UX | UI & Web                  |
-| All           | Business      | African Fintech           |
-| Lethabo.S     | QA / Docs     | Testing & Documentation   |
-
-📄 See `TEAM.md` for more details.
+| Name          |
+| ------------- |
+| Lethabo.S     |
+| Nkateko.M     |
+| Sontaga.M     |
 
 ---
 
