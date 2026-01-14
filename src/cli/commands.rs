@@ -1,8 +1,22 @@
 use clap::{Args, Subcommand};
-use rust_decimal::Decimal;
 use uuid::Uuid;
 
-// Update CreateArgs to include phone numbers
+#[derive(Subcommand)]
+pub enum Commands {
+    Create(CreateArgs),
+    Fund(FundArgs),
+    Release(ReleaseArgs),
+    Cancel(CancelArgs),
+    Dispute(DisputeArgs),
+    Vote(VoteArgs),
+    List,
+    Get(GetArgs),
+    Trust(TrustArgs),
+    Demo(DemoArgs),
+    Sms(SmsArgs),
+    Dashboard,
+}
+
 #[derive(Args)]
 pub struct CreateArgs {
     #[arg(short, long)]
@@ -14,60 +28,80 @@ pub struct CreateArgs {
     #[arg(short = 'b', long)]
     pub buyer_id: Uuid,
     
-    #[arg(short = 'B', long)]
+    #[arg(long)]
     pub buyer_phone: String,
     
     #[arg(short = 's', long)]
-    pub seller_id: Uuid,
+    pub seller_id: String,
     
-    #[arg(short = 'S', long)]
+    #[arg(long)]
     pub seller_phone: String,
     
-    #[arg(short = 'd', long, default_value = "Monthly stock purchase")]
+    #[arg(short, long, default_value = "Monthly stock purchase")]
     pub description: String,
     
-    #[arg(short = 't', long, default_value_t = 30)]
+    #[arg(short, long, default_value_t = 30)]
     pub days: i64,
     
     #[arg(long, default_value_t = false)]
-    pub simulate_sms: bool,
+    pub with_sms: bool,
 }
 
-// Add new commands
-#[derive(Subcommand)]
-pub enum Commands {
-    /// Create a new escrow
-    Create(CreateArgs),
+#[derive(Args)]
+pub struct FundArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
     
-    /// Fund an existing escrow
-    Fund(FundArgs),
+    #[arg(short, long)]
+    pub amount: f64,
+}
+
+#[derive(Args)]
+pub struct ReleaseArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
     
-    /// Release funds to seller
-    Release(ReleaseArgs),
+    #[arg(short, long)]
+    pub user_id: Uuid,
     
-    /// Cancel an escrow
-    Cancel(CancelArgs),
+    #[arg(short, long)]
+    pub pin: String,
+}
+
+#[derive(Args)]
+pub struct CancelArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
     
-    /// Raise a dispute
-    Dispute(DisputeArgs),
+    #[arg(short, long)]
+    pub user_id: Uuid,
+}
+
+#[derive(Args)]
+pub struct DisputeArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
     
-    /// Vote on a dispute
-    Vote(VoteArgs),
+    #[arg(short, long)]
+    pub user_id: Uuid,
+}
+
+#[derive(Args)]
+pub struct VoteArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
     
-    /// List all escrows
-    List,
+    #[arg(short, long)]
+    pub arbitrator_id: Uuid,
     
-    /// Get escrow details
-    Get(GetArgs),
-    
-    /// Show trust score
-    Trust(TrustArgs),
-    
-    /// Run demo scenario
-    Demo(DemoArgs),
-    
-    /// Show dashboard
-    Dashboard,
+    #[arg(short, long)]
+    pub vote: bool,
+}
+
+#[derive(Args)]
+pub struct GetArgs {
+    #[arg(short, long)]
+    pub escrow_id: Uuid,
 }
 
 #[derive(Args)]
@@ -80,7 +114,13 @@ pub struct TrustArgs {
 pub struct DemoArgs {
     #[arg(short, long, default_value_t = 1)]
     pub scenario: u8,
+}
+
+#[derive(Args)]
+pub struct SmsArgs {
+    #[arg(short, long)]
+    pub phone: String,
     
-    #[arg(long, default_value_t = false)]
-    pub with_sms: bool,
+    #[arg(short, long)]
+    pub message: String,
 }

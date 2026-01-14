@@ -3,8 +3,7 @@ pub mod escrow;
 pub mod storage;
 pub mod cli;
 pub mod api;
+pub mod trust;
 
-
-// Re-exports for convenience
 pub use types::*;
 pub use escrow::*;

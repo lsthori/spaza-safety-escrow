@@ -1,2 +1,2 @@
-/// In-memory storage implementation
 pub mod memory;
+pub use memory::MemoryStorage;
