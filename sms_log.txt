@@ -1,0 +1,3 @@
+[2026-01-14 19:23:25] Safaricom | To: ******6789 | Message: Spaza Escrow PIN: 540214 For Escrow: 134ecb34 Amount: 1500 ZAR  Give this PIN to delivery driver to release payment.
+[2026-01-14 19:23:25] Safaricom | To: ******3210 | Message: FUNDS GUARANTEED! Escrow: 134ecb34 Amount: 1500 ZAR  Buyer has escrowed funds. You can safely deliver goods.
+[2026-01-14 19:23:25] Safaricom | To: ******3210 | Message: PAYMENT RECEIVED! Amount: 1500 ZAR Escrow: 134ecb34  Funds released to your account.

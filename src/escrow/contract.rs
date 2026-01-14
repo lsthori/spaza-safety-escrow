@@ -49,7 +49,7 @@ impl EscrowContract {
         
         escrow.state = EscrowState::Completed;
         escrow.completed_at = Some(Utc::now());
-        escrow.release_pin = None; // Invalidate PIN after use
+        escrow.release_pin = None;
         
         Ok(())
     }
@@ -90,7 +90,6 @@ impl EscrowContract {
             });
         }
         
-        // Check if user is an arbitrator for this escrow
         if !escrow.arbitrators.contains(&arbitrator_id) {
             return Err(EscrowError::NotArbitrator);
         }
@@ -98,7 +97,6 @@ impl EscrowContract {
         let dispute = escrow.dispute_resolution.as_mut()
             .ok_or_else(|| EscrowError::ValidationError("No dispute found".to_string()))?;
         
-        // Check if already voted
         if dispute.votes.iter().any(|v| v.arbitrator_id == arbitrator_id) {
             return Err(EscrowError::ValidationError("Already voted".to_string()));
         }
@@ -109,13 +107,11 @@ impl EscrowContract {
             voted_at: Utc::now(),
         });
         
-        // Check if we have majority (simple 2/3 majority)
         let total_arbitrators = escrow.arbitrators.len();
         let votes_for_release = dispute.votes.iter().filter(|v| v.vote).count();
         let votes_for_refund = dispute.votes.iter().filter(|v| !v.vote).count();
         
-        // If majority reached, resolve dispute
-        let needed_for_majority = (total_arbitrators * 2 + 2) / 3; // Ceiling of 2/3
+        let needed_for_majority = (total_arbitrators * 2 + 2) / 3;
         
         if votes_for_release >= needed_for_majority {
             dispute.decision = Some(DisputeDecision::ReleaseToSeller);

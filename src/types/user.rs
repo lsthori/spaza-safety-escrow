@@ -21,7 +21,7 @@ pub enum UserType {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TrustScore {
-    pub score: Decimal, // 0-100
+    pub score: Decimal,
     pub total_transactions: u32,
     pub successful_transactions: u32,
     pub dispute_rate: Decimal,
@@ -31,7 +31,7 @@ pub struct TrustScore {
 impl TrustScore {
     pub fn new() -> Self {
         Self {
-            score: Decimal::new(50, 0), // Start at 50
+            score: Decimal::new(50, 0),
             total_transactions: 0,
             successful_transactions: 0,
             dispute_rate: Decimal::ZERO,
@@ -58,7 +58,6 @@ impl TrustScore {
             let success_rate = Decimal::from(self.successful_transactions) 
                 / Decimal::from(self.total_transactions);
             
-            // More weight to recent transactions
             self.score = (success_rate * Decimal::from(90)) + Decimal::from(10);
             self.score = self.score.min(Decimal::from(100)).max(Decimal::ZERO);
             

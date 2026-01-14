@@ -43,7 +43,7 @@ pub struct DisputeResolution {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Vote {
     pub arbitrator_id: Uuid,
-    pub vote: bool, // true = release to seller, false = refund to buyer
+    pub vote: bool,
     pub voted_at: DateTime<Utc>,
 }
 
@@ -58,7 +58,7 @@ impl Escrow {
         amount: Decimal,
         currency: impl Into<String>,
         buyer_id: Uuid,
-        seller_id: Uuid,
+        seller_id: impl Into<String>,
         description: impl Into<String>,
         days_to_expire: i64,
     ) -> Self {
@@ -70,7 +70,7 @@ impl Escrow {
             amount,
             currency: currency.into(),
             buyer_id,
-            seller_id,
+            seller_id: Uuid::parse_str(&seller_id.into()).unwrap_or_else(|_| Uuid::new_v4()),
             description: description.into(),
             state: EscrowState::Created,
             created_at: now,
@@ -78,7 +78,7 @@ impl Escrow {
             funded_at: None,
             completed_at: None,
             release_pin: Some(release_pin),
-            arbitrators: vec![], // Will be populated from a trusted pool
+            arbitrators: vec![Uuid::new_v4(), Uuid::new_v4(), Uuid::new_v4()],
             dispute_resolution: None,
         }
     }
